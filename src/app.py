@@ -35,6 +35,12 @@ def success_response(data, code=200):
 def failure_response(message, code=404):
 	return json.dumps({"success": False, "error": message}), code
 
+@app.route("/api/courses/<course_subj>/<course_code>/")
+def get_course(course_subj, course_code):
+	course = Course.query.filter_by(subj=course_subj, code=course_code).first()
+	if course is None:
+		return failure_response('Course not found')
+	return success_response(course.serialize())
 
 @app.route("/api/internal/update/")
 def update_web_data():
