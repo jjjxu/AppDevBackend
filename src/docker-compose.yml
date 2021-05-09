@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+    demo:
+        image: jjjxu/fun_class_backend:deployment
+        ports: 
+          - "5000:5000"
+        
