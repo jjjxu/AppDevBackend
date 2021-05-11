@@ -35,8 +35,15 @@ class Course(db.Model):
 			"code": self.code,
 			"name": self.name,
 			"description": self.desc,
-			"credit count": self.credits,
-			"CU Reviews Overall": self.CURover,
-			"CU Reviews Difficulty": self.CURdiff,
-			"CU Reviews Workload": self.CURwork
+			"credit_count": self.credits,
+			"CU_Reviews_Overall": self.CURover,
+			"CU_Reviews_Difficulty": self.CURdiff,
+			"CU_Reviews_"
+			"Workload": self.CURwork
+		}
+
+	def short_serialize(self):
+		return{
+			"subject": self.subj,
+			"code": self.code
 		}

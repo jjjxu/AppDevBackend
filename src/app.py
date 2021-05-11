@@ -6,6 +6,7 @@ import requests
 from flask import Flask
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from sqlalchemy import func, and_, or_, not_
 
 from db import Course
 from db import db
@@ -118,7 +119,15 @@ def update_web_data():
 
 @app.route("/api/courses/search/<search_query>/")
 def search_data(search_query):
-    pass
+    courses = [c.short_serialize() for c in Course.query.filter(
+        or_(
+            func.lower(Course.desc).contains(func.lower(search_query)),
+            func.lower(Course.name).contains(func.lower(search_query))
+        )
+    )]
+    if len(courses) == 0:
+        return failure_response('No results found', 404)
+    return success_response(courses)
 
 
 @app.route("/api/test/success/")
