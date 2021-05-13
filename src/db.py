@@ -38,8 +38,7 @@ class Course(db.Model):
 			"credit_count": self.credits,
 			"CU_Reviews_Overall": self.CURover,
 			"CU_Reviews_Difficulty": self.CURdiff,
-			"CU_Reviews_"
-			"Workload": self.CURwork
+			"CU_Reviews_Workload": self.CURwork
 		}
 
 	def short_serialize(self):
